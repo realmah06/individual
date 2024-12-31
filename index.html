@@ -125,7 +125,10 @@
                               title: 'Success!',
                               text: 'You have successfully signed in.',
                               icon: 'success',
-                              confirmButtonText: 'Okay'
+                              confirmButtonText: 'Go to Dashboard'
+                          }).then(() => {
+                              // Redirect to dashboard after success
+                              window.location.href = "dashboard.html"; // Replace with actual dashboard URL
                           });
                       }, 5000);
                   }
