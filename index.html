@@ -8,40 +8,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-        *{
+        * {
             margin: 0;
-            padding: 0:
+            padding: 0;
             font-family: "Roboto", serif;
             font-weight: 500;
             font-style: normal;
         }
-        body{
+        body {
             display: flex;
             justify-content: center;
         }
-        .login-container{
+        .login-container {
             padding: 10px 15px;
             width: 500px;
             margin-top: 100px;
             text-align: left;
         }
-        h1{
+        h1 {
             font-size: 25px;
             text-align: center;
             color: darkred;
         }
-        .form-group{
+        .form-group {
             margin: 5px;
         }
-        .form.group label{
+        .form-group label {
             display: block;
             font-size: 17px;
             font-weight: bold;
         }
-        .form-group input{
+        .form-group input {
             padding: 8px 10px;
             border: 1px solid #ddd;
             width: 97%;
@@ -49,10 +51,10 @@
             border-radius: 3.5px;
             outline: none;
         }
-        img{
+        img {
             height: 100px;
         }
-        button{
+        button {
             padding: 8px 10px;
             margin-top: 10px;
             border: 1px solid #ddd;
@@ -83,5 +85,61 @@
           </div>
       </form>
   </div>
+
+  <script>
+      // Add event listener for form submission
+      document.getElementById('loginForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent form submission
+
+          // Get username and password values
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+
+          // Validate the username and password
+          if (username === 'admin' && password === 'password') { // Example credentials
+              // Show SweetAlert2 confirmation dialog
+              Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You are about to sign in.",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes, sign in!',
+                  cancelButtonText: 'Cancel'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      // Remove confirmation button and show preloader in its place
+                      Swal.fire({
+                          title: 'Processing...',
+                          html: 'Please wait while we log you in.',
+                          allowOutsideClick: false,
+                          showConfirmButton: false,
+                          willOpen: () => {
+                              Swal.showLoading();
+                          }
+                      });
+
+                      // Simulate a 5-second delay (e.g., API call or processing)
+                      setTimeout(function() {
+                          // After 5 seconds, show success message
+                          Swal.fire({
+                              title: 'Success!',
+                              text: 'You have successfully signed in.',
+                              icon: 'success',
+                              confirmButtonText: 'Okay'
+                          });
+                      }, 5000);
+                  }
+              });
+          } else {
+              // Show error if username or password is incorrect
+              Swal.fire({
+                  title: 'Error!',
+                  text: 'Invalid username or password.',
+                  icon: 'error',
+                  confirmButtonText: 'Try Again'
+              });
+          }
+      });
+  </script>
 </body>
 </html>
