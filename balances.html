@@ -79,6 +79,17 @@
             font-size: 20px;
             color: grey;
         }
+        .modal .modal-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header input{
+            padding: 5px 7px;
+            width: 70%;
+            outline: none;
+            border-radius: 3px;
+        }
         </style>
 </head>
 <body>
@@ -125,9 +136,17 @@
         <div class="row">
             <div class="modal">
                 <h2>Banks Balances</h2>
+                <div class="modal-header">
+                    <input type="search" placeholder="Search Banks">
+                    <span class="material-symbols-outlined">playlist_add_circle</span>
+                </div>
             </div>
             <div class="modal">
                 <h2>Customers Balances</h2>
+                <div class="modal-header">
+                    <input type="search" placeholder="Search Customers">
+                    <span class="material-symbols-outlined">playlist_add_circle</span>
+                </div>
             </div>
             </div>
 </div>
