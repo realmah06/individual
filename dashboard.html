@@ -149,9 +149,11 @@
             font-style: italic;
             font-size: 20px;
             color: red;
+            letter-spacing: 1px; /* Default letter spacing */
+            transition: letter-spacing 0.3s ease-in-out; /* Smooth transition */
         }
         .no-activities:hover{
-            letter-spacing: 4px;
+            letter-spacing: 5px; 
             font-size: 25px;
             font-weight: bold;
         }
@@ -166,11 +168,11 @@
            <img src="logo.jpg" alt="logo">
        </div>
        <div class="list">
-           <li><a href="#">
+           <li><a href="dashboard.html">
                <span class="material-symbols-outlined">multiline_chart</span>
                Dashboard
            </a></li>
-           <li><a href="#">
+           <li><a href="balances.html">
                <span class="material-symbols-outlined">balance</span>
                G_Balances
            </a></li>
