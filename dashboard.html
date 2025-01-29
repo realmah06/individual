@@ -3,244 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M A Mujaheed Global Enterprises</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <title>Dashboard - M A Mujaheed Global Enterprises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: "Roboto", serif;
-            font-style: normal;
         }
-        body{
-            background-color: rgb(237, 246, 247);
-        }
-        .header{
+        body {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            background-color: darkgreen;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            flex: 1;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            width: 100%;
-            border-bottom: 1px solid #ddd;
-            background-color: #fff;
         }
-        .header .logo img{
-            height: 75px;
-        }
-        .header .list{
-            padding: 7px 10px;
-            align-items: center;
-        }
-        .list li{
-            list-style: none;
-            margin-inline-start: 30px;
-            display: inline-flex;
-        }
-        .list li a{
-            font-size: 18px;
-            text-decoration: none;
-            color: #000;
-            font-weight: 500;
-        }
-        .content{
-            padding: 8px 11px;
-        }
-        .content h2{
+        .dashboard-header h1 {
             color: darkred;
         }
-        .row1{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-        .row1 .box{
-            text-align: center;
-            min-width: 250px;
-            padding: 15px;
-            display: inline-block;
-            background-color: rgb(215, 239, 241);
-            margin: 20px;
-            border-radius: 1rem;
-            border: 1px solid #ddd;
-            font-weight: bold;
-        }
-        .row1 .box p{
-            font-size: 19px;
-        }
-        .credit{
-            color: green;
-            font-weight: bold;
-        }
-        .debit{
-            color: red;
-            font-weight: bold;
-        }
-        .row2{
-            display: flex;
-        }
-        .row2 .box{
-            display: inline-block;
-            width: 300px;
-            background-color: #fff;
+        .dashboard-header button {
+            padding: 10px 15px;
+            font-size: 14px;
+            background-color: darkgreen;
+            color: #fff;
+            border: none;
             border-radius: 5px;
-            padding: 10px 13px;
-            margin: 20px;
-            box-shadow: 0px 0px 3px rgb(0,0,0.1);
+            cursor: pointer;
         }
-        .row2 .box .box-header{
+        .dashboard-header button:hover {
+            background-color: green;
+        }
+        .dashboard-summary {
             display: flex;
-            justify-content: space-around;
-            font-weight: bold;
+            gap: 20px;
+            margin-top: 20px;
         }
-        footer{
-            width: 100%;
-            background-color: #2d2d2d;
-            bottom: 0;
-            position: fixed;
+        .summary-box {
+            flex: 1;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            padding: 10px;
         }
-        footer span{
-            padding: 5px;
-            color: #ddd;
+        .summary-box h2 {
+            color: darkred;
+            margin-bottom: 10px;
         }
-        .recently{
-            padding: 5px;
-            width: 100%;
-            border: 1px solid #ddd;
+        .summary-box p {
+            font-size: 18px;
+            color: green;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .last-login {
             margin: 20px 0;
+            text-align: right;
             font-size: 16px;
-            text-align: left;
-        }
-
-        thead th {
             color: #333;
-            font-weight: bold;
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-
-        tbody td {
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        .no-activities {
-            text-align: center;
-            margin-top: 10px;
-            font-style: italic;
-            font-size: 20px;
-            color: red;
-            letter-spacing: 1px; /* Default letter spacing */
-            transition: letter-spacing 0.3s ease-in-out; /* Smooth transition */
-        }
-        .no-activities:hover{
-            letter-spacing: 5px; 
-            font-size: 25px;
-            font-weight: bold;
-        }
-        @media screen and (max-width: 900px) {
-            .
         }
     </style>
 </head>
 <body>
-   <div class="header">
-       <div class="logo">
-           <img src="logo.jpg" alt="logo">
-       </div>
-       <div class="list">
-           <li><a href="dashboard.html">
-               <span class="material-symbols-outlined">multiline_chart</span>
-               Dashboard
-           </a></li>
-           <li><a href="balances.html">
-               <span class="material-symbols-outlined">balance</span>
-               G_Balances
-           </a></li>
-           <li><a href="investment.html">
-               <span class="material-symbols-outlined">monitoring</span>
-               Investors & Profit
-           </a></li>
-           <li><a href="supply.html">
-               <span class="material-symbols-outlined">storefront</span>
-               Supply Manag.
-           </a></li>
-           <li><a href="delivery.html">
-               <span class="material-symbols-outlined">delivery_truck_speed</span>
-               Delivery Manag.
-           </a></li>
-           <li><a href="account.html">
-               <span class="material-symbols-outlined">assured_workload</span>
-               Account Manag.
-           </a></li>
-           <li><a href="index.html">
-               <span class="material-symbols-outlined">power_settings_circle</span>
-               Signout
-           </a></li>
-       </div>
-   </div>
-    <br>
-    <div class="content">
-        <h2>Admin Panels.....</h2>
-        <hr style="border: 1px solid green;">
-        <br><br>
-        <div class="row1">
-            <div class="box">
-                <p><span class="material-symbols-outlined">account_balance</span> Bank Account = ₦0 [<span class="credit">+₦0</span>||<span class="debit">-₦0</span>]</p>
-            </div>
-
-            <div class="box">
-                <p><span class="material-symbols-outlined">groups</span> Investors Value [<span class="credit">+₦0.00</span>||<span class="debit">-₦0.00</span>]</p>
-            </div>
-
-            
-            <div class="box">
-                <p><span class="material-symbols-outlined">unknown_2</span> Credit/Debit Adjustment = ₦0 [<span class="credit">+₦0</span>||<span class="debit">-₦0</span>]</p>
-            </div>
+    <header>
+        <h1>Welcome to the Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>Dashboard Overview</h1>
+            <button onclick="logout()">Logout</button>
         </div>
-        <br>
-        <div class="recently">
-            <h3><span class="material-symbols-outlined">search_activity</span> Recent activities...</h3>
-            <br>
-            <table>
-        <thead>
-            <tr>
-                <th>S/No</th>
-                <th>Date</th>
-                <th>Issued by</th>
-                <th>Categories</th>
-                <th>Description</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <div class="no-activities">No More Activities Recently!</div>
-            <br>
+        <div class="last-login" id="lastLogin"></div>
+        <div class="dashboard-summary">
+            <div class="summary-box">
+                <h2>Total Sales</h2>
+                <p>$5000</p>
+            </div>
+            <div class="summary-box">
+                <h2>Profit</h2>
+                <p>$2000</p>
+            </div>
+            <div class="summary-box">
+                <h2>Orders</h2>
+                <p>35</p>
+            </div>
         </div>
     </div>
-    <footer>
-        <span>Copyright&copy; <b>M A Mujaheed Global Enterprises 2025.</b> &nbsp; Powered by <b>Mahadi Abubakar Mujahid</b></span>
-    </footer>
+    <script>
+        window.onload = function() {
+            const lastLogin = localStorage.getItem('lastLogin');
+            document.getElementById('lastLogin').textContent = `Last Login: ${lastLogin || 'N/A'}`;
+        };
+
+        function logout() {
+            Swal.fire({
+                icon: 'info',
+                title: 'Logout Successful',
+                text: 'You have been logged out.',
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "index.html";
+            });
+        }
+    </script>
 </body>
 </html>
