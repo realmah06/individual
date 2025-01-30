@@ -33,7 +33,7 @@
   }
   .sidebar{
     padding: 10px;
-    width: 230px;
+    min-width: 230px;
     border-radius: 1rem;
     margin-top: 30px;
     box-shadow: 0px 0px 2px darkred;
@@ -118,13 +118,40 @@
     padding: 10px;
     color: #ccc;
   }
+    .show, .hide{
+        display: none;
+        padding: 7px;
+        font-size: 30px;
+    }
+    @media screen and (max-width: 700px){
+        .header{
+            display: none;
+        }
+        .sidebar{
+            display: none;
+            top: 0px;
+            margin: 0;
+            border-radius: 0;
+        }
+        .sidebar ul li{
+            display: inline-flex;
+            width: 100%;
+        }
+        .show{
+            display: block;
+            
+        }
+        .dashboard{
+            margin: 0;
+        }
+    }
     </style>
 </head>
 <body>
   <div class="header">
     <p></p>
   </div>
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <ul>
       <li><a href="#">Dashboard</a></li>
       <li><a href="#">General™ Balances</a></li>
@@ -137,6 +164,8 @@
     </ul>
   </div>
   <div class="dashboard">
+      <p id="show" class="show">👁️</p>
+      <p id="hide" class="hide">👁️</p>
     <h1>Dashboard Summary <span id="current-date" style="float: right;"></span></h1>
     <br>
     <div class="summary">
@@ -263,6 +292,22 @@
 
         // Display the date in the span element
         document.getElementById('current-dates').textContent = formattedDates;
+    
+    
+    const sidebar = document.getElementById('sidebar');
+    const show = document.getElementById('show');
+    const hide = document.getElementById('hide');
+    
+    show.onclick = function(){
+        sidebar.style.display = "block";
+        hide.style.display = "block";
+        show.style.display = "none";
+    }
+    hide.onclick = function(){
+        sidebar.style.display = "none";
+        hide.style.display = "none";
+        show.style.display = "block";
+    }
     </script>
 </body>
 </html>
