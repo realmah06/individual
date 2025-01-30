@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - M A Mujaheed Global Enterprises</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,12 +17,14 @@
         }
         body{
           display: flex;
+            background-color: rgb(237,246,247);
         }
   .header{
     background-color: darkgreen;
     top: 0;
     position: fixed;
     width: 100%;
+      
   }
   .header p{
     padding: 7px;
@@ -28,9 +33,14 @@
   }
   .sidebar{
     padding: 10px;
-    width: 250px;
+    width: 230px;
+    border-radius: 1rem;
     margin-top: 30px;
+    box-shadow: 0px 0px 2px darkred;
+    margin-left: 10px;
     border-right: 1px solid #ddd;
+    background-color: #fff;
+    height: 67vh;
   }
   .sidebar ul li{
     list-style: none;
@@ -52,6 +62,7 @@
     border: 2px solid #ddd;
     padding: 10px;
     border-radius: 5px;
+      background-color: #fff;
   }
   .annual .boxarea{
     display: flex;
@@ -59,12 +70,17 @@
   }
   .boxarea .box{
     display: inline-block;
-    margin: 5px;
+    margin: 7px;
     text-align: center;
+    width: 150px;
   }
   .box .boxheader{
-    font-weight: bold;
+    font-weight: 650;
     text-align: center;
+    background-color: rgb(237,246,247);
+    padding: 2px;
+    color: green;
+    font-style: italic;
   }
   .box .boxcontent{
     display: inline-flex;
@@ -72,17 +88,35 @@
   }
   .icon, .text{
     margin: 5px;
+    color: green;
   }
   .icon{
     font-size: 30px;
   }
+   table{
+       width: 100%;
+       border-collapse: collapse;  
+       border: 1px solid #ddd;
+   }
+    table thead{
+        background-color: #fff;
+    }
+    thead th{
+        padding: 5px;
+        font-size: 15px;
+    }
+    .none{
+        text-align: center;
+        color: lightblue;
+    }
   footer{
     bottom: 0;
     position: fixed;
     width: 100%;
+    text-align: center;
     background-color: #000;
     padding: 10px;
-    color: #fff;
+    color: #ccc;
   }
     </style>
 </head>
@@ -103,7 +137,7 @@
     </ul>
   </div>
   <div class="dashboard">
-    <h1>Dashboard Summary</h1>
+    <h1>Dashboard Summary <span id="current-date" style="float: right;"></span></h1>
     <br>
     <div class="summary">
       <div class="annual">
@@ -169,13 +203,66 @@
               </span>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
+      <br><br>
+      <h2>Recent Activities</h2>
+      <hr>
+      <br>
+      <table>
+          <tbody>
+              <thead>
+                  <th><input type="radio"></th>
+                  <th>S/No</th>
+                  <th>Date</th>
+                  <th>Issued by</th>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Visit</th>
+                  <th>Status</th>
+              </thead>
+          </tbody>
+      </table>
+      <br><br>
+      <div class="none">
+          <marquee>
+          <h3>No More Recent Activities Yet @ <span id="current-dates"></span></h3>
+              </marquee>
+      </div>
   </div>
   <footer>
     <p>Copyright&copy; M A MUJAHEED GLOBAL ENTERPRISES 2025.</p>
   </footer>
+     <script>
+        // Get the current date
+        const currentDate = new Date();
+
+        // Format the date as "Month Day, Year" (e.g., January 30, 2025)
+        const formattedDate = currentDate.toLocaleDateString('en-US', {
+            
+            year: 'numeric', 
+            month: 'numeric', 
+            day: 'numeric'
+        });
+
+        // Display the date in the span element
+        document.getElementById('current-date').textContent = formattedDate;
+    
+    
+    // Get the current date
+        const currentDates = new Date();
+
+        // Format the date as "Month Day, Year" (e.g., January 30, 2025)
+        const formattedDates = currentDates.toLocaleDateString('en-US', {
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric'
+        });
+
+        // Display the date in the span element
+        document.getElementById('current-dates').textContent = formattedDates;
+    </script>
 </body>
 </html>
