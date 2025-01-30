@@ -30,7 +30,7 @@
     padding: 10px;
     width: 250px;
     margin-top: 30px;
-    
+    border-right: 1px solid #ddd;
   }
   .sidebar ul li{
     list-style: none;
@@ -40,7 +40,41 @@
     text-decoration: none;
   }
   .dashboard{
-    margin-top: 20px;
+    margin: 30px 10px;
+    width: 100%;
+    padding: 7px;
+  }
+  .dashboard h1{
+    font-size: 25px;
+    color: darkred;
+  }
+  .summary .annual{
+    border: 2px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .annual .boxarea{
+    display: flex;
+    justify-content: space-between;
+  }
+  .boxarea .box{
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+  }
+  .box .boxheader{
+    font-weight: bold;
+    text-align: center;
+  }
+  .box .boxcontent{
+    display: inline-flex;
+    align-items: center;
+  }
+  .icon, .text{
+    margin: 5px;
+  }
+  .icon{
+    font-size: 30px;
   }
   footer{
     bottom: 0;
@@ -59,20 +93,89 @@
   <div class="sidebar">
     <ul>
       <li><a href="#">Dashboard</a></li>
-      <li><a href="#">G™ Balances</a></li>
+      <li><a href="#">General™ Balances</a></li>
       <li><a href="#">Investment Analysis</a></li>
       <li><a href="#">Account Management</a></li>
       <li><a href="#">Supply Management</a></li>
       <li><a href="#">Delivery Management</a></li>
       <li><a href="#">General Report</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="index.html">Logout</a></li>
     </ul>
   </div>
   <div class="dashboard">
-    <h1>Dashboard</h1>
+    <h1>Dashboard Summary</h1>
+    <br>
+    <div class="summary">
+      <div class="annual">
+        <h4>Annual Transactions Details <small><em>(2025)</em></small></h4>
+        <hr>
+        <div class="boxarea">
+          <!--Total Ordered-->
+          <div class="box">
+            <div class="boxheader">
+              <p>Total Ordered</p>
+            </div>
+            <div class="boxcontent">
+              <div class="icon">
+                I
+              </div>
+              <span>
+                0bags
+              </span>
+            </div>
+          </div>
+          
+           <!--Total Sold Out-->
+          <div class="box">
+            <div class="boxheader">
+              <p>Total Sold Out</p>
+            </div>
+            <div class="boxcontent">
+              <div class="icon">
+                I
+              </div>
+              <span>
+                0bags
+              </span>
+            </div>
+          </div>
+          
+           <!--Investor Value-->
+          <div class="box">
+            <div class="boxheader">
+              <p>Investor Value</p>
+            </div>
+            <div class="boxcontent">
+              <div class="icon">
+                I
+              </div>
+              <span>
+                0.00
+              </span>
+            </div>
+          </div>
+          
+           <!--MARGIN-->
+          <div class="box">
+            <div class="boxheader">
+              <p>Margin</p>
+            </div>
+            <div class="boxcontent">
+              <div class="icon">
+                I
+              </div>
+              <span>
+                0.00
+              </span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
   </div>
   <footer>
-    <h3>Copyright&copy; M A MUJAHEED GLOBAL ENTERPRISES 2025.</h3>
+    <p>Copyright&copy; M A MUJAHEED GLOBAL ENTERPRISES 2025.</p>
   </footer>
 </body>
 </html>
