@@ -36,18 +36,19 @@
     min-width: 230px;
     border-radius: 1rem;
     margin-top: 30px;
-    box-shadow: 0px 0px 2px darkred;
     margin-left: 10px;
-    border-right: 1px solid #ddd;
-    background-color: #fff;
-    height: auto;
   }
   .sidebar ul li{
     list-style: none;
-    margin: 15px;
+    margin: 10px;
+    text-align: center;
+    padding: 5px 7px;
+    background-color: darkgreen;
+    
   }
   .sidebar ul li a{
     text-decoration: none;
+      color: #fff;
   }
   .dashboard{
     margin: 30px 10px;
@@ -72,7 +73,7 @@
     display: inline-block;
     margin: 7px;
     text-align: center;
-    width: 150px;
+    width: 170px;
   }
   .box .boxheader{
     font-weight: 650;
@@ -123,10 +124,11 @@
         padding: 7px;
         font-size: 30px;
     }
-    @media screen and (max-width: 1000px){
+    @media screen and (max-width: 700px){
         .header{
             display: none;
         }
+        /*
         .sidebar{
             display: none;
             top: 0px;
@@ -143,6 +145,41 @@
         }
         .dashboard{
             margin: 0;
+        }
+        */
+        .sidebar{
+            display: flex none;
+            top: 0;
+            position: fixed;
+            margin: 0;
+            background: #fff;
+            width: 100%;
+            border-radius: 0;
+            border-bottom: 1px solid #ddf;
+            
+        }
+        .sidebar ul{
+            width: 100%;
+        }
+        .sidebar ul li{
+            display: inline-block;
+            background: none;
+        }
+        .sidebar ul li a{
+            color: #000;
+        }
+        .dashboard{
+            margin-top: 120px;
+        }
+        .summary .annual{
+            background: none;
+            border: none;
+        }
+        .annual .boxarea{
+            display: inline-block;
+        }
+        .boxarea .box .boxheader{
+            background: none;
         }
     }
     </style>
@@ -164,14 +201,17 @@
     </ul>
   </div>
   <div class="dashboard">
+      <!--
       <p id="show" class="show">👁️</p>
       <p id="hide" class="hide">👁️</p>
+      -->
     <h1>Dashboard Summary <span id="current-date" style="float: right;"></span></h1>
     <br>
     <div class="summary">
       <div class="annual">
         <h4>Annual Transactions Details <small><em>(2025)</em></small></h4>
         <hr>
+          <center>
         <div class="boxarea">
           <!--Total Ordered-->
           <div class="box">
@@ -234,6 +274,7 @@
           </div>
         </div>
       </div>
+      </center>
     </div>
       <br><br>
       <h2>Recent Activities</h2>
@@ -293,7 +334,7 @@
         // Display the date in the span element
         document.getElementById('current-dates').textContent = formattedDates;
     
-    
+    /*
     const sidebar = document.getElementById('sidebar');
     const show = document.getElementById('show');
     const hide = document.getElementById('hide');
@@ -308,6 +349,7 @@
         hide.style.display = "none";
         show.style.display = "block";
     }
+    */
     </script>
 </body>
 </html>
