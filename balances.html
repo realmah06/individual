@@ -72,7 +72,75 @@
         margin: 10px;
         text-decoration-color: darkred;
     }
+    .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
 
+.popup-content {
+    background: white;
+    width: 500px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content.show {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+.close-btn {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+/* Hide all forms initially */
+.setup-form {
+    display: none;
+}
+
+form input, form button {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+form button {
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.modalhead input{
+    padding: 7px;
+    margin: 10px;
+    outline: none;
+}
   footer{
     bottom: 0;
     position: fixed;
@@ -82,7 +150,30 @@
     padding: 10px;
     color: #ccc;
   }
-    @media screen and (max-width: 700px){
+    .setup-form h2{
+        font-size: 17px;
+        color: #ddd;
+    }
+    .form-group{
+        margin: 7px;
+    }
+    .form-group label{
+        display: block;
+        font-weight: bold;
+    }
+    .form-group select{
+        padding: 7px 10px;
+        width: 100%;
+        border: 1px solid #ddd;
+        background: #fff;
+        outline: none;
+    }
+    .form-group input{
+        padding: 7px 10px;
+        border: 1px solid #ddd;
+        outline: none;
+    }
+    @media screen and (max-width: 1000px){
         .row{
             display: block;
         }
@@ -90,8 +181,15 @@
             width: 95%;
             height: 40vh;
         }
-        ul{
+        .header ul{
             display: block;
+        }
+        ul li{
+            display: inline-flex;
+            margin: 10px;
+        }
+        .content{
+            margin-top: 30px;
         }
     }
     </style>
@@ -100,14 +198,14 @@
     <div class="header">
         <p>  Registration</p>
         <ul>
-            <li>Category Setup</li>
-        <li>Bank Setup</li>
-        <li>Customer Setup</li>
-        <li>Expenses Setup</li>
-        <li>House Supplier</li>
-        <li>Companies Setup</li>
-        <li>Supplier Setup</li>
-        <li>Transporter Setup</li>
+        <li onclick="openPopup('category-setup')">Category Setup</li>
+        <li onclick="openPopup('bank-setup')">Bank Setup</li>
+        <li onclick="openPopup('customer-setup')">Customer Setup</li>
+        <li onclick="openPopup('expenses-setup')">Expenses Setup</li>
+        <li onclick="openPopup('house-supplier')">House Supplier</li>
+        <li onclick="openPopup('companies-setup')">Companies Setup</li>
+        <li onclick="openPopup('supplier-setup')">Supplier Setup</li>
+        <li onclick="openPopup('transporter-setup')">Transporter Setup</li>
         </ul>
     </div>
     <div class="date"></div>
@@ -115,13 +213,13 @@
         <div class="row">
             <div class="modal">
                 <div class="modalhead">
-                <h2>Bank</h2>
+                    <input type="search" placeholder="Search Bank">
                     <hr>
                 </div>
             </div>  
              <div class="modal">
                  <div class="modalhead">
-                <h2>Customers</h2>
+                <input type="search" placeholder="Search Customer">
                      <hr>
                  </div>
             </div>
@@ -130,13 +228,13 @@
         <div class="row">
             <div class="modal">
                 <div class="modalhead">
-                <h2>Expenses</h2>
+                <input type="search" placeholder="Search Expenses">
                     <hr>
                 </div>
             </div>  
              <div class="modal">
                  <div class="modalhead">
-                <h2>House Supplier Percentage</h2>
+                <input type="search" placeholder="Search Supplier Percentage">
                      <hr>
                  </div>
             </div>
@@ -172,6 +270,119 @@
             </div>
         </div>
     </div>
+    <!-- Popup Form Container -->
+    <div id="popupForm" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+
+            <!-- Forms -->
+            <form id="category-setup" class="setup-form">
+                <h2>Category Setup</h2>
+                <hr><br><br>
+                <div class="form-group">
+                    <label for="to do">Select action</label>
+                    <select>
+                        <option>Add Category</option>
+                        <option>Update Category</option>
+                        <option>Delete Category</option>
+                    </select>
+                </div>
+                <hr style="border: 1px solid green;">
+                <br>
+                <div class="form-group">
+                    <label for="category-name">New Category Name</label>
+                    <input type="text" placeholder="Category Name">
+                </div>
+                <button class="submit-btn">Submit</button>
+            </form>
+
+            <form id="bank-setup" class="setup-form">
+                <h2>Bank Setup</h2>
+                <hr><br><br>
+                <div class="form-group">
+                    <label for="to do">Select action</label>
+                    <select>
+                        <option>Add Category</option>
+                        <option>Update Category</option>
+                        <option>Delete Category</option>
+                    </select>
+                </div>
+                <hr style="border: 1px solid green;">
+                <br>
+                <div class="form-group">
+                    <label for="bankname">Bank Name</label>
+                    <select>
+                        <option> -- Select Bank -- </option>
+                        <option>Access Bank Plc</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Account Name</label>
+                    <input type="text" placeholder="Account Name">
+                </div>
+                <div class="form-group">
+                    <label>Account Number</label>
+                    <input type="number" placeholder="Account Number">
+                </div>
+                <button>Submit</button>
+            </form>
+
+            <form id="customer-setup" class="setup-form">
+                <h2>Customer Setup</h2>
+                <label>Customer Name</label>
+                <input type="text" placeholder="Enter customer name">
+                <label>Phone Number</label>
+                <input type="text" placeholder="Enter phone number">
+                <button type="submit">Submit</button>
+            </form>
+
+            <form id="expenses-setup" class="setup-form">
+                <h2>Expenses Setup</h2>
+                <label>Expense Type</label>
+                <input type="text" placeholder="Enter expense type">
+                <label>Amount</label>
+                <input type="number" placeholder="Enter amount">
+                <button type="submit">Submit</button>
+            </form>
+
+            <form id="house-supplier" class="setup-form">
+                <h2>House Supplier</h2>
+                <label>Supplier Name</label>
+                <input type="text" placeholder="Enter supplier name">
+                <label>Product Type</label>
+                <input type="text" placeholder="Enter product type">
+                <button type="submit">Submit</button>
+            </form>
+
+            <form id="companies-setup" class="setup-form">
+                <h2>Companies Setup</h2>
+                <label>Company Name</label>
+                <input type="text" placeholder="Enter company name">
+                <label>Company Address</label>
+                <input type="text" placeholder="Enter company address">
+                <button type="submit">Submit</button>
+            </form>
+
+            <form id="supplier-setup" class="setup-form">
+                <h2>Supplier Setup</h2>
+                <label>Supplier Name</label>
+                <input type="text" placeholder="Enter supplier name">
+                <label>Contact</label>
+                <input type="text" placeholder="Enter contact">
+                <button type="submit">Submit</button>
+            </form>
+
+            <form id="transporter-setup" class="setup-form">
+                <h2>Transporter Setup</h2>
+                <label>Transporter Name</label>
+                <input type="text" placeholder="Enter transporter name">
+                <label>Vehicle Number</label>
+                <input type="text" placeholder="Enter vehicle number">
+                <button type="submit">Submit</button>
+            </form>
+
+        </div>
+    </div>
   <footer>
     <p>Copyright&copy; M A MUJAHEED GLOBAL ENTERPRISES 2025.</p>
   </footer>
@@ -189,6 +400,55 @@
 
         // Display the date in the span element
         document.getElementById('current-date').textContent = formattedDate;
+    
+    function openPopup(formId) {
+    const popup = document.getElementById("popupForm");
+    const popupContent = document.querySelector(".popup-content");
+    
+    // Hide all forms
+    document.querySelectorAll(".setup-form").forEach(form => {
+        form.style.display = "none";
+    });
+
+    // Show the selected form
+    document.getElementById(formId).style.display = "block";
+
+    // Show the popup
+    popup.style.display = "block";
+    setTimeout(() => {
+        popup.classList.add("show");
+        popupContent.classList.add("show");
+    }, 10);
+}
+
+// Close Popup
+function closePopup() {
+    const popup = document.getElementById("popupForm");
+    const popupContent = document.querySelector(".popup-content");
+
+    popup.classList.remove("show");
+    popupContent.classList.remove("show");
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 300);
+}
+
+// Handle form submission
+document.querySelectorAll(".setup-form").forEach(form => {
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        
+        Swal.fire("Success!", "Your form has been submitted.", "success");
+        closePopup();
+    });
+});
+
+    
     </script>
+    
+    
+    
+    
 </body>
 </html>
